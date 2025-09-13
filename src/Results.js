@@ -28,7 +28,7 @@ const Results = ({ data, value }) => {
             setImages(newImages);
         };
         if (data && data.length > 0) fetchImages();
-    }, [data]);
+    }, [data, unsplashAccessKey]);
     
     return (
         <div className='results-container'>
