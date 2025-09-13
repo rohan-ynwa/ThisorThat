@@ -4,11 +4,9 @@ import EggIcon from '@mui/icons-material/Egg';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { green } from '@mui/material/colors';
+import { green, red } from '@mui/material/colors';
 import SearchBar from './Search';
 import Results from './Results';
-
-
 
 function App() {
   const theme = createTheme({
@@ -17,9 +15,9 @@ function App() {
         main: green[200],
       },
       secondary: {
-        main: '#ffffffff',
+        main: red[500],
       },
-      mode: 'dark',
+      mode: 'dark', 
     },
   });
 

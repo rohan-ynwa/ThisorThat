@@ -12,13 +12,7 @@ import Divider from '@mui/material/Divider';
 import LoadingButton from '@mui/lab/LoadingButton';
 
 const options = [
-    'Apple',
-    'Banana',
-    'Carrot',
-    'Doughnut',
-    'Eggplant',
-    'Fig',
-    'Grape',
+    'Tomato, roma',
 ];
 
 export default function SearchBar({ setData, setValue, value }) {
@@ -27,18 +21,28 @@ export default function SearchBar({ setData, setValue, value }) {
     const [land, setLand] = useState(null);
     const [fetrilizer, setFertilizer] = useState(null);
     const [loading, setLoading] = useState(false);
-
+    
+    const API_URL = 'https://thisorthatapi.onrender.com/items';
     const handleSearch = () => {
         setLoading(true);
-        // For demonstration, we'll just set some dummy data
-        setTimeout(() => {
-                    setData([
-                    { name: value, co2:  10, water: 20, land: 30, fertilizer: 40 },
-                    { name: value + ' Alternative 1', co2: 15, water: 25, land: 35, fertilizer: 45 },
-                    { name: value + ' Alternative 2', co2: 12, water: 22, land: 32, fertilizer: 42 }
-                ]);
+        const params = new URLSearchParams();
+        if (value) params.append('food_item', value);
+        if (co2) params.append('co2', 'true');
+        if (water) params.append('water', 'true');
+        if (land) params.append('land', 'true');
+        if (fetrilizer) params.append('fertilizer', 'true');
+        
+        fetch(`${API_URL}?${params.toString()}`)
+            .then(response => response.json())
+            .then(data => {
+                setData(data);
+                console.log(data);
                 setLoading(false);
-            }, 1000);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                setLoading(false);
+            });
     }
 
     return (
