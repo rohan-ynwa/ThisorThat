@@ -26,8 +26,6 @@ function App() {
   const [data, setData] = React.useState(null);
   const [value, setValue] = React.useState(null);
   
-
-
   return (
     <ThemeProvider theme={theme}>
       <div className="App" style={{ height: '100vh'}}>

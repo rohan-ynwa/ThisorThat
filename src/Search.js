@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Autocomplete, Box, Button, Typography } from '@mui/material';
+import { TextField, Autocomplete, Box, Typography } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 import Card from '@mui/material/Card';
@@ -9,6 +9,7 @@ import AgricultureIcon from '@mui/icons-material/Agriculture';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import Co2Icon from '@mui/icons-material/Co2';
 import Divider from '@mui/material/Divider';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const options = [
     'Apple',
@@ -25,17 +26,20 @@ export default function SearchBar({ setData, setValue, value }) {
     const [water, setWater] = useState(null);
     const [land, setLand] = useState(null);
     const [fetrilizer, setFertilizer] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleSearch = () => {
-        // Implement your search logic here
+        setLoading(true);
         // For demonstration, we'll just set some dummy data
-        setData([
-            { name: value, co2:  10, water: 20, land: 30, fertilizer: 40 },
-            { name: value + ' Alternative 1', co2: 15, water: 25, land: 35, fertilizer: 45 },
-            { name: value + ' Alternative 2', co2: 12, water: 22, land: 32, fertilizer: 42 }
-        ]);
+        setTimeout(() => {
+                    setData([
+                    { name: value, co2:  10, water: 20, land: 30, fertilizer: 40 },
+                    { name: value + ' Alternative 1', co2: 15, water: 25, land: 35, fertilizer: 45 },
+                    { name: value + ' Alternative 2', co2: 12, water: 22, land: 32, fertilizer: 42 }
+                ]);
+                setLoading(false);
+            }, 1000);
     }
-
 
     return (
         <Card id="search-card">
@@ -68,15 +72,16 @@ export default function SearchBar({ setData, setValue, value }) {
                 )}
                 sx={{ width: '100%', marginTop: '20px' }}
             />
-            <Button 
+            <LoadingButton 
                 variant="contained" 
                 color="primary" 
                 style={{ marginTop: '30px' }} 
                 disabled={!value} 
                 onClick={handleSearch}
+                loading={loading}
             >
                 Search
-            </Button>
+            </LoadingButton>
         </Card>
     );
 }
