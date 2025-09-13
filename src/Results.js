@@ -10,9 +10,7 @@ import { Tooltip } from '@mui/material';
 
 const Results = ({ data, value }) => {
 
-    // const unsplashSecret = process.env.REACT_APP_UNSPLASH_SECRET;
-    // const unsplashAccessKey = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
-    const unsplashAccessKey = 'ivdZGlgVzptqgQzYCtgO9sVsNfe4S7HK3RcnwLPk1zY';
+    const unsplashAccessKey = process.env.REACT_APP_UNSPLASH_ACCESS_KEY;
 
     const [images, setImages] = useState({});
 
@@ -57,8 +55,8 @@ const Results = ({ data, value }) => {
                         <Typography gutterBottom variant="h5" component="div">
                             {item.name}
                         </Typography>
-                        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-                            
+                        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', flexWrap: 'wrap' }}>
+                        
                             <Gauge width={100} height={100} value={item.co2 || 0} text={"CO2"} label="Co2" />
                             <Gauge width={100} height={100} value={item.water || 0} text={"Water"} label="Water" />
                             <Gauge width={100} height={100} value={item.land || 0} text={"Land"} label="Land" />

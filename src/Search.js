@@ -42,7 +42,7 @@ export default function SearchBar({ setData, setValue, value }) {
             <Typography variant='subtitle2' gutterBottom color='textSecondary'>
                 Select the environmental impacts you want to minimize:
             </Typography>
-            <div style={{display: 'flex', gap: '10px', marginBottom: '10px' }}>
+            <div style={{display: 'flex', gap: '10px', marginBottom: '10px', flexWrap: 'wrap', justifyContent: 'center'}}>
                 <Chip label="Carbon Impact" onClick={() => setCo2(!co2)} color={co2 ? 'primary' : 'default'} icon={<Co2Icon />}  />
                 <Chip label="Water Use" onClick={() => setWater(!water)} color={water ? 'primary' : 'default'} icon={<WaterDropIcon />}  />
                 <Chip label="Land Use" onClick={() => setLand(!land)} color={land ? 'primary' : 'default'} icon={<ForestIcon />}  />
