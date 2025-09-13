@@ -122,6 +122,7 @@ export default function SearchBar({ setData, setValue, value }) {
     const [land, setLand] = useState(null);
     const [fetrilizer, setFertilizer] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     
     const API_URL = 'https://thisorthatapi.onrender.com/items';
     const handleSearch = () => {
@@ -143,6 +144,8 @@ export default function SearchBar({ setData, setValue, value }) {
             .catch(error => {
                 console.error('Error fetching data:', error);
                 setLoading(false);
+                setError('No match found. Please try another search.');
+                setTimeout(() => setError(null), 5000);
             });
     }
 
@@ -187,6 +190,7 @@ export default function SearchBar({ setData, setValue, value }) {
             >
                 Search
             </LoadingButton>
+            {error && <Typography variant='body2' color='error' style={{ marginTop: '10px' }}>{error}</Typography>}
         </Card>
     );
 }
